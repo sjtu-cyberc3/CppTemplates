@@ -1,0 +1,73 @@
+cmake_minimum_required(VERSION 3.1.0)
+project(demo)
+
+# ##########################################################
+# Version
+# ##########################################################
+set(VERSION_MAJOR 1)
+set(VERSION_MINOR 0)
+configure_file(
+  "${PROJECT_SOURCE_DIR}/config/VersionConfig.h.in"
+  "${PROJECT_SOURCE_DIR}/config/VersionConfig.h")
+
+# ##########################################################
+# Compiler Options
+# ##########################################################
+set(CMAKE_CXX_FLAGS_RELEASE "$ENV{CXXFLAGS} -O3 -Wall")
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
+                      ${PROJECT_SOURCE_DIR}/cmake_modules)
+add_compile_options(-std=c++14)
+add_definitions(-std=c++14)
+enable_testing() # 开启测试
+
+# ##########################################################
+# Dependencies
+# ##########################################################
+set(require_third_libs "")
+include_directories(".")
+
+# global_defination ###
+include(cmake_modules/global_defination.cmake)
+
+# glog ###
+find_package(Glog REQUIRED)
+include_directories(${GLOG_INCLUDE_DIRS})
+list(APPEND require_third_libs ${GLOG_LIBRARIES})
+
+# gtest ###
+find_package(GTest REQUIRED)
+include_directories(${GTEST_INCLUDE_DIRS})
+
+# eigen ###
+find_package(Eigen3 REQUIRED)
+include_directories(${EIGEN3_INCLUDE_DIR})
+
+# Boost ###
+find_package(Boost REQUIRED COMPONENTS timer)
+include_directories(${Boost_INCLUDE_DIRS})
+list(APPEND require_third_libs ${Boost_LIBRARIES})
+
+# ##########################################################
+# Source files
+# ##########################################################
+add_subdirectory(common)
+add_subdirectory(modules)
+
+# ##########################################################
+# Target
+# ##########################################################
+set(${PROJECT_NAME}_libs "")
+list(APPEND ${PROJECT_NAME}_libs)
+
+# ##########################################################
+# Display
+# ##########################################################
+# message(STATUS "CXX FLAGS: ${CMAKE_CXX_FLAGS}")
+# message(STATUS "Third party libs: ${require_third_libs}")
+# message(STATUS "Local link  libs:
+# ${${PROJECT_NAME}_libs}")
+
+# ##########################################################
+# app
+# ##########################################################
+add_subdirectory(app)
