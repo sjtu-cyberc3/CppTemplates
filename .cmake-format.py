@@ -94,7 +94,7 @@ with section("format"):
   keyword_case = 'unchanged'
 
   # A list of command names which should always be wrapped
-  always_wrap = ["target_link_libraries"]
+  always_wrap = []
 
   # If true, the argument lists which are known to be sortable will be sorted
   # lexicographicall

@@ -9,6 +9,7 @@
  *
  */
 #include "submodule2.h"
+#include <cassert>
 
 void submodule2::read(const std::string& path) {
   std::ifstream infile(path);

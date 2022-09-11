@@ -56,7 +56,8 @@
                     "text": "-enable-pretty-printing",
                     "ignoreFailures": true
                 }
-            ]
+            ],
+            "configurationProvider": "ms-vscode.cmake-tools"
         }
     ]
 }

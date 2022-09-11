@@ -64,7 +64,6 @@ list(APPEND ${PROJECT_NAME}_libs)
 # ##########################################################
 # message(STATUS "CXX FLAGS: ${CMAKE_CXX_FLAGS}")
 # message(STATUS "Third party libs: ${require_third_libs}")
-# message(STATUS "Local link  libs:
 # ${${PROJECT_NAME}_libs}")
 
 # ##########################################################
