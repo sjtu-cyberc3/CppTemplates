@@ -1,3 +1,5 @@
+project(submodule1) 
+
 add_executable(submodule1_test submodule1_test.cc)
 
 # 链接测试库

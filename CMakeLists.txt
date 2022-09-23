@@ -16,8 +16,8 @@ configure_file(
 set(CMAKE_CXX_FLAGS_RELEASE "$ENV{CXXFLAGS} -O3 -Wall")
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
                       ${PROJECT_SOURCE_DIR}/cmake_modules)
-add_compile_options(-std=c++14)
-add_definitions(-std=c++14)
+add_compile_options(-std=c++11)
+add_definitions(-std=c++11)
 enable_testing() # 开启测试
 
 # ##########################################################

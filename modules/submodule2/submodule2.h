@@ -45,13 +45,23 @@ class submodule2 {
   void read(const std::string& path);
   /**
    * @brief Get the name object
-   * @note asddddddasddddddasddddddasddddddasddddddasddddddasddddddasddddddasddddddasddddddasddddddasddddddasddddddasddddddasddddddasddddddasdddddd
+   * @note asddddddasddddddasddddddasddddddasddddddasdddddd
+   * asddddddasddddddasddddddasddddddasddddddasddddddasdddddda
+   * sddddddasddddddasddddddasdddddd
    * @return std::string
    */
   std::string get_name() {
     return m_name;
   }
 
+  /**
+   * @brief Registers the class given by the creator function, linking it to id.
+   * Registration must happen prior to calling CreateObject.
+   * @param id Identifier of the class being registered
+   * @param creator Function returning a pointer to an instance of
+   * the registered class
+   * @return True if the key id is still available
+   */
   std::deque<std::string> dddd_;
 
  private:
