@@ -70,3 +70,4 @@ list(APPEND ${PROJECT_NAME}_libs)
 # app
 # ##########################################################
 add_subdirectory(app)
+add_subdirectory(rosWrapper)
