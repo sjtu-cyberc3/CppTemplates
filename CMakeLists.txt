@@ -13,11 +13,12 @@ configure_file(
 # ##########################################################
 # Compiler Options
 # ##########################################################
-set(CMAKE_CXX_FLAGS_RELEASE "$ENV{CXXFLAGS} -O3 -Wall")
+add_compile_options("-Wall -Werror=return-type")
+add_compile_options("$<$<CONFIG:RELEASE>:-O3>")
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
                       ${PROJECT_SOURCE_DIR}/cmake_modules)
-add_compile_options(-std=c++11)
-add_definitions(-std=c++11)
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 enable_testing() # 开启测试
 
 # ##########################################################
