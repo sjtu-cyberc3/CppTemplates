@@ -32,6 +32,7 @@
 *.app
 
 /config/global_defination.h
+/config/VersionConfig.h
 /log/*
 /test/lidar*
 OUTPUT/*
