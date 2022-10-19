@@ -9,22 +9,19 @@
  *
  */
 #include "submodule2.h"
-#include <cassert>
 
+namespace modules {
 void submodule2::read(const std::string& path) {
   std::ifstream infile(path);
   assert(infile.is_open());
 
-  std::string     thisline;
-  std::deque<int> int_deque;
+  std::string thisline;
   while (getline(infile, thisline)) {
     std::cout << thisline << std::endl;
 
-    // int this_data;
-    // word >> this_data;
-
-    dddd_.push_back(thisline);
+    info_.push_back(thisline);
   }
   infile.close();
-  std::cout << int_deque.size() << std::endl;
+  std::cout << info_.size() << std::endl;
 }
+}  // namespace modules
