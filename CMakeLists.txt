@@ -13,8 +13,8 @@ configure_file(
 # ##########################################################
 # Compiler Options
 # ##########################################################
-add_compile_options("-Wall -Werror=return-type")
-add_compile_options("$<$<CONFIG:RELEASE>:-O3>")
+# add_compile_options("-Wall -Werror=return-type")
+# add_compile_options("$<$<CONFIG:RELEASE>:-O3>")
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
                       ${PROJECT_SOURCE_DIR}/cmake_modules)
 set(CMAKE_CXX_STANDARD 11)
@@ -32,12 +32,15 @@ include(cmake_modules/global_defination.cmake)
 
 # glog ###
 find_package(Glog REQUIRED)
-include_directories(${GLOG_INCLUDE_DIRS})
-list(APPEND require_third_libs ${GLOG_LIBRARIES})
+include_directories(${GLOG_INCLUDE_DIR})
+list(APPEND require_third_libs ${GLOG_LIBRARY})
 
 # gtest ###
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
+
+# yaml ###
+find_package(yaml-cpp REQUIRED)
 
 # eigen ###
 find_package(Eigen3 REQUIRED)
