@@ -111,6 +111,14 @@
         "source_location": "cpp",
         "stop_token": "cpp",
         "cinttypes": "cpp",
-        "filesystem": "cpp"
+        "filesystem": "cpp",
+        "csignal": "cpp",
+        "hash_map": "cpp",
+        "hash_set": "cpp",
+        "strstream": "cpp",
+        "forward_list": "cpp",
+        "cfenv": "cpp",
+        "typeindex": "cpp",
+        "cassert": "cpp"
     }
 }
