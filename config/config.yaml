@@ -1,0 +1,2 @@
+lidarprocess:
+  mode: 1 # 1 run as velodyne, 2 run as 5mid70, 3 5mid70 omp

@@ -41,6 +41,7 @@ include_directories(${GTEST_INCLUDE_DIRS})
 
 # yaml ###
 find_package(yaml-cpp REQUIRED)
+list(APPEND require_third_libs ${YAML_CPP_LIBRARIES})
 
 # eigen ###
 find_package(Eigen3 REQUIRED)
@@ -50,6 +51,11 @@ include_directories(${EIGEN3_INCLUDE_DIR})
 find_package(Boost REQUIRED COMPONENTS timer)
 include_directories(${Boost_INCLUDE_DIRS})
 list(APPEND require_third_libs ${Boost_LIBRARIES})
+
+# PCL ###
+find_package(PCL 1.8 REQUIRED)
+include_directories(${PCL_INCLUDE_DIRS})
+list(APPEND require_third_libs ${PCL_LIBRARIES})
 
 # ##########################################################
 # Source files

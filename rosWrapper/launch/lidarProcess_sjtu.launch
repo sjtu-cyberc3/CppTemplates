@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- arguments -->
+    <arg name="pointCloudTopic" default="/driver/livox/point_cloud" />
+    <arg name="imuTopic" default="/driver/imu" />
+    <arg name="gnssTopic" default="/odomTopic" />
+
+    <node pkg="cyberc3_lio" type="lidarProcessNode" name="lidarProcessNode" output="screen" >
+        <remap from="/pointCloudTopic" to="$(arg pointCloudTopic)" />
+        <remap from="/imuTopic" to="$(arg imuTopic)" />
+        <!-- <remap from="/odomTopic" to="$(arg odomTopic)" /> -->
+    </node>
+
+    <arg name="rviz" default="true" />
+    <group if="$(arg rviz)">
+        <node launch-prefix="nice" pkg="rviz" type="rviz" name="rviz" args="-d $(find cyberc3_lio)/rosWrapper/rviz/lidarProcess.rviz" />
+    </group>
+</launch>
