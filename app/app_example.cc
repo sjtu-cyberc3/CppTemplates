@@ -1,6 +1,4 @@
 #include "app_example.h"
-#include <mutex>
-#include <optional>
 
 AppExample::AppExample(const std::string& config_file) {
   // in this example, we do not need a config file.

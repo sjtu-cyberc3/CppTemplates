@@ -70,9 +70,10 @@ int main(int argc, char* argv[]) {
   /****************************************/
   /*            configure bag             */
   /****************************************/
-  bag<std_msgs::String, std_msgs::Int32> bag("/str", "/int");
+  BagPlayer bag_player(nh);
   if (!bag_file.empty()) {
-    bag.open(bag_file, nh);
+    bag_player.open(bag_file);
+    bag_player.set_queue_size(1);
   }
 
   /****************************************/
@@ -82,11 +83,11 @@ int main(int argc, char* argv[]) {
   ros::Rate loop_rate(100);
   while (ros::ok()) {
     // play rosbag
-    if (bag.is_open()) {
+    if (bag_player.is_open()) {
       // end loop if bag end
-      if (bag.eof())
+      if (bag_player.eof())
         ros::shutdown();
-      bag.play_once();
+      bag_player.play_once();
     }
     // process ros message callback
     ros::spinOnce();
