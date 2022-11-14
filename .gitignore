@@ -45,3 +45,5 @@ OUTPUT/*
 
 /html
 /latex
+
+.cache

@@ -1,83 +1,72 @@
-cmake_minimum_required(VERSION 3.1.0)
-project(demo)
+cmake_minimum_required(VERSION 3.10)
+project(cpptemplates2)
 
 # ##########################################################
 # Version
 # ##########################################################
 set(VERSION_MAJOR 1)
 set(VERSION_MINOR 0)
-configure_file(
-  "${PROJECT_SOURCE_DIR}/config/VersionConfig.h.in"
-  "${PROJECT_SOURCE_DIR}/config/VersionConfig.h")
+
+# ##########################################################
+# C++ Standard
+# ##########################################################
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# ##########################################################
+# Compiler Defines
+# ##########################################################
+add_compile_definitions(VERSION_MAJOR=${VERSION_MAJOR})
+add_compile_definitions(VERSION_MINOR=${VERSION_MINOR})
+add_compile_definitions(WORK_SPACE_PATH=${CMAKE_CURRENT_SOURCE_DIR})
 
 # ##########################################################
 # Compiler Options
 # ##########################################################
-# add_compile_options("-Wall -Werror=return-type")
-# add_compile_options("$<$<CONFIG:RELEASE>:-O3>")
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
-                      ${PROJECT_SOURCE_DIR}/cmake_modules)
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-enable_testing() # 开启测试
+add_compile_options(-Wall)
+add_compile_options(-Werror=return-type)
+# default static library for better performance
+set(BUILD_SHARED_LIBS OFF CACHE BOOL "Build dynamically-linked binaries") 
+# configure link time optimization
+option(WITH_LTO "enable link time optimization" OFF)
+if(WITH_LTO)
+    add_compile_options(-flto)
+endif()
 
 # ##########################################################
 # Dependencies
 # ##########################################################
-set(require_third_libs "")
-include_directories(".")
-
-# global_defination ###
-include(cmake_modules/global_defination.cmake)
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
+                      ${PROJECT_SOURCE_DIR}/cmake)
+include_directories(.)
 
 # glog ###
 find_package(Glog REQUIRED)
 include_directories(${GLOG_INCLUDE_DIR})
-list(APPEND require_third_libs ${GLOG_LIBRARY})
+link_libraries(${GLOG_LIBRARY})
+
+# yaml ###
+find_package(yaml-cpp 0.6 REQUIRED)
+include_directories(${YAML_CPP_INCLUDE_DIR})
+link_libraries(${YAML_CPP_LIBRARIES})
+
+# eigen ###
+find_package(Eigen3 3.3 REQUIRED)
+include_directories(${EIGEN3_INCLUDE_DIR})
 
 # gtest ###
+enable_testing()
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 
-# yaml ###
-find_package(yaml-cpp REQUIRED)
-list(APPEND require_third_libs ${YAML_CPP_LIBRARIES})
-
-# eigen ###
-find_package(Eigen3 REQUIRED)
-include_directories(${EIGEN3_INCLUDE_DIR})
-
-# Boost ###
-find_package(Boost REQUIRED COMPONENTS timer)
-include_directories(${Boost_INCLUDE_DIRS})
-list(APPEND require_third_libs ${Boost_LIBRARIES})
-
-# PCL ###
-find_package(PCL 1.8 REQUIRED)
-include_directories(${PCL_INCLUDE_DIRS})
-list(APPEND require_third_libs ${PCL_LIBRARIES})
+# threading
+find_package(Threads REQUIRED)
+link_directories(Threads::Threads)
 
 # ##########################################################
 # Source files
 # ##########################################################
 add_subdirectory(common)
 add_subdirectory(modules)
-
-# ##########################################################
-# Target
-# ##########################################################
-set(${PROJECT_NAME}_libs "")
-list(APPEND ${PROJECT_NAME}_libs)
-
-# ##########################################################
-# Display
-# ##########################################################
-# message(STATUS "CXX FLAGS: ${CMAKE_CXX_FLAGS}")
-# message(STATUS "Third party libs: ${require_third_libs}")
-# ${${PROJECT_NAME}_libs}")
-
-# ##########################################################
-# app
-# ##########################################################
 add_subdirectory(app)
-add_subdirectory(rosWrapper)
+add_subdirectory(ros)
