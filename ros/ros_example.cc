@@ -100,8 +100,10 @@ int main(int argc, char* argv[]) {
       rst_msg->data = std::move(result.value());
       rst_pub.publish(rst_msg);
     }
-    // sleep
-    loop_rate.sleep();
+    // only sleep without rosbag
+    if (!bag_player.is_open()) {
+      loop_rate.sleep();
+    }
   }
 
   /****************************************/
