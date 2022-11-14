@@ -1,12 +1,8 @@
 // app
 #include "app/app_example.h"
 // user
-#include "ros/init.h"
-#include "ros/publisher.h"
 #include "tools/rosbag.h"
 // ros
-#include <iterator>
-#include <optional>
 #include <ros/ros.h>
 #include <std_msgs/Int32.h>
 #include <std_msgs/String.h>
@@ -86,9 +82,10 @@ int main(int argc, char* argv[]) {
   ros::Rate loop_rate(100);
   while (ros::ok()) {
     // play rosbag
-    if(bag.is_open()) {
+    if (bag.is_open()) {
       // end loop if bag end
-      if(bag.eof()) ros::shutdown();
+      if (bag.eof())
+        ros::shutdown();
       bag.play_once();
     }
     // process ros message callback
