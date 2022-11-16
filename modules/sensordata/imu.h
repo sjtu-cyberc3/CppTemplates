@@ -28,7 +28,7 @@ inline std::ostream& operator<<(std::ostream& os, const sensordata::IMU& data) {
   return os;
 }
 
-std::istream& operator>>(std::istream& is, sensordata::IMU& data) {
+inline std::istream& operator>>(std::istream& is, sensordata::IMU& data) {
   is >> data.time;
   is >> data.acc.x() >> data.acc.y() >> data.acc.z();
   is >> data.gyr.x() >> data.gyr.y() >> data.gyr.z();
