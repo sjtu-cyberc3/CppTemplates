@@ -28,6 +28,14 @@ int BagPlayer::get_queue_size() const {
   return queue_size_;
 }
 
+void BagPlayer::set_rate(float rate) {
+  rate_ = rate;
+}
+
+int BagPlayer::get_rate() const {
+  return rate_;
+}
+
 bool BagPlayer::eof() const {
   return view_it_ == view_end_;
 }
@@ -41,8 +49,8 @@ void BagPlayer::play_once() {
   if (first_play) {
     curr_msg_pub_time = ros::Time::now();
     first_play        = false;
-  } else {
-    curr_msg_pub_time = prev_msg_pub_time + (curr_msg_bag_time - prev_msg_bag_time);
+  } else if (rate_ > 0) {
+    curr_msg_pub_time = prev_msg_pub_time + (curr_msg_bag_time - prev_msg_bag_time) * (1 / rate_);
     ros::Time::sleepUntil(curr_msg_pub_time);
   }
 

@@ -21,6 +21,10 @@ class BagPlayer {
 
   int get_queue_size() const;
 
+  void set_rate(float rate);
+
+  int get_rate() const;
+
   bool eof() const;
 
   void play_once();
@@ -40,4 +44,6 @@ class BagPlayer {
   bool first_play = true;
 
   int queue_size_ = 0;
+
+  float rate_ = 1; // 0 for full speed
 };

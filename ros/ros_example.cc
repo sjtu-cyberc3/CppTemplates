@@ -74,6 +74,7 @@ int main(int argc, char* argv[]) {
   if (!bag_file.empty()) {
     bag_player.open(bag_file);
     bag_player.set_queue_size(1);
+    bag_player.set_rate(1); // set to 0 for full speed (not recommend)
   }
 
   /****************************************/
