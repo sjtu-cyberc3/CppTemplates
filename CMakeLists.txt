@@ -18,7 +18,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # ##########################################################
 add_compile_definitions(VERSION_MAJOR=${VERSION_MAJOR})
 add_compile_definitions(VERSION_MINOR=${VERSION_MINOR})
-add_compile_definitions(WORK_SPACE_PATH=${CMAKE_CURRENT_SOURCE_DIR})
+add_compile_definitions(WORK_SPACE_PATH="${CMAKE_CURRENT_SOURCE_DIR}")
 
 # ##########################################################
 # Compiler Options
