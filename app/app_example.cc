@@ -23,13 +23,13 @@ void AppExample::process() {
   // extract data
   std::string      str;
   std::unique_lock str_lock(str_mtx);
-  str = std::move(str_queue.back());
+  str = std::move(str_queue.front());
   str_queue.pop();
   str_lock.unlock();
 
   int              x;
   std::unique_lock int_lock(int_mtx);
-  x = std::move(int_queue.back());
+  x = std::move(int_queue.front());
   int_queue.pop();
   int_lock.unlock();
 
@@ -47,7 +47,7 @@ std::optional<std::string> AppExample::get_rst() {
   std::unique_lock rst_lock(rst_mtx);
   if (rst_queue.empty())
     return std::nullopt;
-  std::string rst = std::move(rst_queue.back());
+  std::string rst = std::move(rst_queue.front());
   rst_queue.pop();
   return std::move(rst);
 }
