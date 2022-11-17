@@ -2,7 +2,7 @@
 #ifndef ROSWRAPPER_CONVERTER_GNSS_H
 #define ROSWRAPPER_CONVERTER_GNSS_H
 
-#include "modules/sensordata/gnss.h"
+#include "common/sensordata/gnss.h"
 #include <sensor_msgs/NavSatFix.h>
 
 namespace converter {

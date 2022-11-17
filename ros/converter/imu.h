@@ -2,7 +2,7 @@
 #ifndef ROSWRAPPER_CONVERTER_IMU_H
 #define ROSWRAPPER_CONVERTER_IMU_H
 
-#include "modules/sensordata/imu.h"
+#include "common/sensordata/imu.h"
 #include <sensor_msgs/Imu.h>
 
 namespace converter {

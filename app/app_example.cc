@@ -2,6 +2,7 @@
 
 AppExample::AppExample(const std::string& config_file) {
   // in this example, we do not need a config file.
+  m_ = std::make_unique<ModuleExample>("Tom", 18);
 }
 
 void AppExample::feed_str(const std::string& str) {
@@ -35,7 +36,7 @@ void AppExample::process() {
 
   // main process
   // in this example, we simply concatenate string and int.
-  std::string rst = str + "[" + std::to_string(x) + "]";
+  std::string rst = m_->do_work(str, x);
 
   // save result
   std::unique_lock rst_lock(rst_mtx);
