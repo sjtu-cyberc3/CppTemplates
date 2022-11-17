@@ -40,6 +40,9 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
                       ${PROJECT_SOURCE_DIR}/cmake)
 include_directories(.)
 
+# global_defination ###
+include(${CMAKE_MODULE_PATH}/global_defination.cmake)
+
 # glog ###
 find_package(Glog REQUIRED)
 include_directories(${GLOG_INCLUDE_DIR})
