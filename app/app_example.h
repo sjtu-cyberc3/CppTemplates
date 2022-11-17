@@ -1,5 +1,8 @@
 #pragma once
 
+#include "modules/example/example.h"
+
+#include <memory>
 #include <mutex>
 #include <optional>
 #include <queue>
@@ -49,4 +52,9 @@ class AppExample {
   /****************************************/
   /* (optional) required only in a multi-threaded environment  */
   std::mutex rst_mtx;
+
+  /****************************************/
+  /*      submodule  class                */
+  /****************************************/
+  std::unique_ptr<ModuleExample> m_;
 };
