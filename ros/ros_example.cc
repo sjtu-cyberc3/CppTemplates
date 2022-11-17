@@ -1,6 +1,7 @@
 // app
 #include "app/app_example.h"
 // user
+#include "cpptemplates2/demo.h"
 #include "tools/rosbag.h"
 // ros
 #include <ros/ros.h>
@@ -65,8 +66,8 @@ int main(int argc, char* argv[]) {
   ros::Subscriber int_sub = nh.subscribe("/int", 1, int_callback);
 
   // publisher here
-  ros::Publisher rst_pub = nh.advertise<std_msgs::String>("/rst", 1);
-
+  ros::Publisher rst_pub       = nh.advertise<std_msgs::String>("/rst", 1);
+  ros::Publisher rst_stamp_pub = nh.advertise<cpptemplates2::demo>("/rst_stamp", 1);
   /****************************************/
   /*            configure bag             */
   /****************************************/
@@ -74,7 +75,7 @@ int main(int argc, char* argv[]) {
   if (!bag_file.empty()) {
     bag_player.open(bag_file);
     bag_player.set_queue_size(1);
-    bag_player.set_rate(1); // set to 0 for full speed (not recommend)
+    bag_player.set_rate(1);  // set to 0 for full speed (not recommend)
   }
 
   /****************************************/
@@ -100,6 +101,11 @@ int main(int argc, char* argv[]) {
       std_msgs::StringPtr rst_msg(new std_msgs::String);
       rst_msg->data = std::move(result.value());
       rst_pub.publish(rst_msg);
+
+      cpptemplates2::demo rst_msg_stamp;
+      rst_msg_stamp.str          = rst_msg->data;
+      rst_msg_stamp.header.stamp = ros::Time::now();
+      rst_stamp_pub.publish(rst_msg_stamp);
     }
     // only sleep without rosbag
     if (!bag_player.is_open()) {
