@@ -1,4 +1,0 @@
-<launch>
-	<node pkg="demo_project" name="demo" type="demo" output="screen">
-	</node>
-</launch>

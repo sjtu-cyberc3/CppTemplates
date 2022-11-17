@@ -1,0 +1,2 @@
+add_library(app_example app_example.cc)
+target_link_libraries(app_example module_example)

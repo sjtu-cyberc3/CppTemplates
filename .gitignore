@@ -45,3 +45,6 @@ OUTPUT/*
 
 /html
 /latex
+
+.cache
+*.DS_Store
