@@ -1,0 +1,10 @@
+[
+  {
+    "name": "GCC 7.5.0 x86_64-linux-gnu",
+    "environmentSetupScript": "/opt/ros/melodic/setup.bash",
+    "compilers": {
+      "C": "/usr/bin/gcc",
+      "CXX": "/usr/bin/g++"
+    }
+  }
+]
