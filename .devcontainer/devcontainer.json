@@ -1,0 +1,40 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.205.2/containers/ubuntu
+{
+	"name": "CppTemplates-dev",
+	"build": {
+		"dockerfile": "Dockerfile",
+	},
+	// Set *default* container specific settings.json values on container create.
+	"settings": {
+		"terminal.integrated.shell.linux": "/bin/bash",
+		"ros.distro": "melodic",
+		"C_Cpp.intelliSenseEngine": "Disabled"
+	},
+	// Add the IDs of extensions you want installed when the container is created.
+	"extensions": [
+		"ms-vscode.cpptools",
+		"ms-iot.vscode-ros",
+		"twxs.cmake",
+		"llvm-vs-code-extensions.vscode-clangd",
+		"mhutchie.git-graph",
+		"ms-vscode.cmake-tools",
+		"cschlosser.doxdocgen",
+		"matepek.vscode-catch2-test-adapter",
+		"seatonjiang.gitmoji-vscode"
+	],
+	"runArgs": [
+		"--network=host",
+		"--cap-add=SYS_PTRACE"
+	],
+	"mounts": [
+		"source=/home/${localEnv:USER}/.ssh,target=/home/cyber/.ssh,type=bind,consistency=cached"
+	],
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "uname -a",
+	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+	"workspaceMount": "source=${localWorkspaceFolder},target=/home/cyber/${localWorkspaceFolderBasename},type=bind",
+	"workspaceFolder": "/home/cyber/${localWorkspaceFolderBasename}"
+}
