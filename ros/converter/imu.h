@@ -2,12 +2,12 @@
 #ifndef ROSWRAPPER_CONVERTER_IMU_H
 #define ROSWRAPPER_CONVERTER_IMU_H
 
-#include "common/sensordata/imu.h"
+#include "common/datatype/imu.h"
 #include <sensor_msgs/Imu.h>
 
 namespace converter {
 
-void to_ros_msg(sensor_msgs::Imu& msg, const sensordata::IMU& data) {
+void to_ros_msg(sensor_msgs::Imu& msg, const datatype::IMU& data) {
   msg.header.stamp.fromSec(data.time);
   msg.angular_velocity.x    = data.gyr.x();
   msg.angular_velocity.y    = data.gyr.y();
@@ -21,7 +21,7 @@ void to_ros_msg(sensor_msgs::Imu& msg, const sensordata::IMU& data) {
   msg.orientation.z         = data.rot.z();
 }
 
-void from_ros_msg(const sensor_msgs::Imu& msg, sensordata::IMU& data) {
+void from_ros_msg(const sensor_msgs::Imu& msg, datatype::IMU& data) {
   data.time    = msg.header.stamp.toSec();
   data.gyr.x() = msg.angular_velocity.x;
   data.gyr.y() = msg.angular_velocity.y;

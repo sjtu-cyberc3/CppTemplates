@@ -1,12 +1,12 @@
 #pragma once
-#ifndef SENSORDATA_GNSS_H
-#define SENSORDATA_GNSS_H
+#ifndef datatype_GNSS_H
+#define datatype_GNSS_H
 
 #include <iomanip>
 #include <iostream>
 #include <numeric>
 
-namespace sensordata {
+namespace datatype {
 
 struct GNSS {
   // Geodetic from GNSS
@@ -22,9 +22,9 @@ struct GNSS {
   double local_U = 0.0;
 };
 
-}  // namespace sensordata
+}  // namespace datatype
 
-inline std::ostream& operator<<(std::ostream& os, const sensordata::GNSS& data) {
+inline std::ostream& operator<<(std::ostream& os, const datatype::GNSS& data) {
   os << std::setprecision(std::numeric_limits<double>::max_digits10) << std::fixed;
   os << data.time << " ";
   os << data.longitude << " " << data.latitude << " " << data.altitude << " ";
@@ -33,7 +33,7 @@ inline std::ostream& operator<<(std::ostream& os, const sensordata::GNSS& data) 
   return os;
 }
 
-inline std::istream& operator>>(std::istream& is, sensordata::GNSS& data) {
+inline std::istream& operator>>(std::istream& is, datatype::GNSS& data) {
   is >> data.time;
   is >> data.longitude >> data.latitude >> data.altitude;
   is >> data.status >> data.service;
@@ -41,4 +41,4 @@ inline std::istream& operator>>(std::istream& is, sensordata::GNSS& data) {
   return is;
 }
 
-#endif  // SENSORDATA_GNSS_H
+#endif  // datatype_GNSS_H

@@ -1,6 +1,6 @@
 #pragma once
-#ifndef SENSORDATA_IMU_H
-#define SENSORDATA_IMU_H
+#ifndef datatype_IMU_H
+#define datatype_IMU_H
 
 #include <Eigen/Core>
 #include <Eigen/Geometry>
@@ -8,7 +8,7 @@
 #include <iostream>
 #include <numeric>
 
-namespace sensordata {
+namespace datatype {
 
 struct IMU {
   double             time;
@@ -17,9 +17,9 @@ struct IMU {
   Eigen::Quaterniond rot;
 };
 
-}  // namespace sensordata
+}  // namespace datatype
 
-inline std::ostream& operator<<(std::ostream& os, const sensordata::IMU& data) {
+inline std::ostream& operator<<(std::ostream& os, const datatype::IMU& data) {
   os << std::setprecision(std::numeric_limits<double>::max_digits10) << std::fixed;
   os << data.time << " ";
   os << data.acc.x() << " " << data.acc.y() << " " << data.acc.z() << " ";
@@ -28,7 +28,7 @@ inline std::ostream& operator<<(std::ostream& os, const sensordata::IMU& data) {
   return os;
 }
 
-inline std::istream& operator>>(std::istream& is, sensordata::IMU& data) {
+inline std::istream& operator>>(std::istream& is, datatype::IMU& data) {
   is >> data.time;
   is >> data.acc.x() >> data.acc.y() >> data.acc.z();
   is >> data.gyr.x() >> data.gyr.y() >> data.gyr.z();
@@ -36,4 +36,4 @@ inline std::istream& operator>>(std::istream& is, sensordata::IMU& data) {
   return is;
 }
 
-#endif  // SENSORDATA_IMU_H
+#endif  // datatype_IMU_H

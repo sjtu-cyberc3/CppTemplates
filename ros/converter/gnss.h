@@ -2,12 +2,12 @@
 #ifndef ROSWRAPPER_CONVERTER_GNSS_H
 #define ROSWRAPPER_CONVERTER_GNSS_H
 
-#include "common/sensordata/gnss.h"
+#include "common/datatype/gnss.h"
 #include <sensor_msgs/NavSatFix.h>
 
 namespace converter {
 
-inline void to_ros_msg(sensor_msgs::NavSatFix& msg, const sensordata::GNSS& data) {
+inline void to_ros_msg(sensor_msgs::NavSatFix& msg, const datatype::GNSS& data) {
   // Geodetic from GNSS
   msg.header.stamp.fromSec(data.time);
   msg.longitude      = data.longitude;
@@ -18,7 +18,7 @@ inline void to_ros_msg(sensor_msgs::NavSatFix& msg, const sensordata::GNSS& data
   // Local cartesian coordinates.
 }
 
-inline void from_ros_msg(const sensor_msgs::NavSatFix& msg, sensordata::GNSS& data) {
+inline void from_ros_msg(const sensor_msgs::NavSatFix& msg, datatype::GNSS& data) {
   // Geodetic from GNSS
   data.time      = msg.header.stamp.toSec();
   data.longitude = msg.longitude;
