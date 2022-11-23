@@ -16,9 +16,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # ##########################################################
 # Compiler Defines
 # ##########################################################
-add_compile_definitions(VERSION_MAJOR=${VERSION_MAJOR})
-add_compile_definitions(VERSION_MINOR=${VERSION_MINOR})
-add_compile_definitions(WORK_SPACE_PATH="${CMAKE_CURRENT_SOURCE_DIR}")
+# add_compile_definitions(VERSION_MAJOR=${VERSION_MAJOR})
+# add_compile_definitions(VERSION_MINOR=${VERSION_MINOR})
+# add_compile_definitions(
+# WORK_SPACE_PATH="${CMAKE_CURRENT_SOURCE_DIR}")
 
 # ##########################################################
 # Compiler Options
@@ -26,11 +27,13 @@ add_compile_definitions(WORK_SPACE_PATH="${CMAKE_CURRENT_SOURCE_DIR}")
 add_compile_options(-Wall)
 add_compile_options(-Werror=return-type)
 # default static library for better performance
-set(BUILD_SHARED_LIBS OFF CACHE BOOL "Build dynamically-linked binaries") 
+set(BUILD_SHARED_LIBS
+    OFF
+    CACHE BOOL "Build dynamically-linked binaries")
 # configure link time optimization
 option(WITH_LTO "enable link time optimization" OFF)
 if(WITH_LTO)
-    add_compile_options(-flto)
+  add_compile_options(-flto)
 endif()
 
 # ##########################################################
@@ -41,6 +44,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
 include_directories(.)
 
 # global_defination ###
+set(WORK_SPACE_PATH ${PROJECT_SOURCE_DIR})
 include(${CMAKE_MODULE_PATH}/global_defination.cmake)
 
 # glog ###
@@ -49,7 +53,7 @@ include_directories(${GLOG_INCLUDE_DIR})
 link_libraries(${GLOG_LIBRARY})
 
 # yaml ###
-find_package(yaml-cpp 0.6 REQUIRED)
+find_package(yaml-cpp 0.5.2 REQUIRED)
 include_directories(${YAML_CPP_INCLUDE_DIR})
 link_libraries(${YAML_CPP_LIBRARIES})
 
