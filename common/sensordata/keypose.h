@@ -20,15 +20,13 @@ struct KeyPose : Pose {
 inline std::ostream& operator<<(std::ostream& os, const sensordata::KeyPose& data) {
   os << std::setprecision(std::numeric_limits<double>::max_digits10) << std::fixed;
   os << data.index << " " << data.time << " ";
-  os << data.trans.x() << " " << data.trans.y() << " " << data.trans.z() << " ";
-  os << data.rot.w() << " " << data.rot.x() << " " << data.rot.y() << " " << data.rot.z() << " ";
+  os << static_cast<const sensordata::Pose&>(data) << " ";
   return os;
 }
 
 inline std::istream& operator>>(std::istream& is, sensordata::KeyPose& data) {
   is >> data.index >> data.time;
-  is >> data.trans.x() >> data.trans.y() >> data.trans.z();
-  is >> data.rot.w() >> data.rot.x() >> data.rot.y() >> data.rot.z();
+  is >> static_cast<sensordata::Pose&>(data);
   return is;
 }
 
