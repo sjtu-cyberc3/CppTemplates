@@ -1,6 +1,4 @@
 #pragma once
-#ifndef ROSWRAPPER_CONVERTER_GNSS_H
-#define ROSWRAPPER_CONVERTER_GNSS_H
 
 #include "common/datatype/gnss.h"
 #include <sensor_msgs/NavSatFix.h>
@@ -30,5 +28,3 @@ inline void from_ros_msg(const sensor_msgs::NavSatFix& msg, datatype::GNSS& data
 }
 
 }  // namespace converter
-
-#endif  // ROSWRAPPER_CONVERTER_GNSS_H

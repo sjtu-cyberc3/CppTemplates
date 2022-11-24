@@ -48,3 +48,6 @@ OUTPUT/*
 
 .cache
 *.DS_Store
+
+.clangd
+compile_commands.json

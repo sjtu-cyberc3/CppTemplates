@@ -65,7 +65,7 @@ class ModuleExample {
    *
    * @return int
    */
-  int get_age() {
+  int get_age() const {
     return age_;
   }
 

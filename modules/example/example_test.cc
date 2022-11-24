@@ -16,9 +16,9 @@
 #include "example.h"
 
 TEST(example, get_age) {
-  ModuleExample stuA("Joel", 21);
-  stuA.color_ = Tag::TEnum::BLUE;
-  ASSERT_TRUE(stuA.get_age() == 21) << "age is not 21";
-  ASSERT_EQ(stuA.get_name(), "Joel") << "name is not Joel";
-  ASSERT_EQ(stuA.color_, Tag::TEnum::BLUE) << "color is not BLUE";
+  ModuleExample stu_a("Joel", 21);
+  stu_a.color_ = Tag::TEnum::BLUE;
+  ASSERT_TRUE(stu_a.get_age() == 21) << "age is not 21";
+  ASSERT_EQ(stu_a.get_name(), "Joel") << "name is not Joel";
+  ASSERT_EQ(stu_a.color_, Tag::TEnum::BLUE) << "color is not BLUE";
 }

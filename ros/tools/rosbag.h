@@ -45,5 +45,5 @@ class BagPlayer {
 
   int queue_size_ = 0;
 
-  float rate_ = 1; // 0 for full speed
+  float rate_ = 1;  // 0 for full speed
 };

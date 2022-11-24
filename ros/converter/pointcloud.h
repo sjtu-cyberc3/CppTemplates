@@ -1,6 +1,4 @@
 #pragma once
-#ifndef ROSWRAPPER_CONVERTER_POINTCLOUD_H
-#define ROSWRAPPER_CONVERTER_POINTCLOUD_H
 
 #include <pcl_ros/point_cloud.h>
 #include <sensor_msgs/PointCloud2.h>
@@ -16,5 +14,3 @@ template <typename P> void from_ros_msg(const sensor_msgs::PointCloud2& msg, pcl
 }
 
 }  // namespace converter
-
-#endif  // ROSWRAPPER_CONVERTER_POINTCLOUD_H
