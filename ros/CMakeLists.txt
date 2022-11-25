@@ -37,4 +37,5 @@ target_link_libraries(
   ros_example
   PRIVATE ros_tools
           app_example
+          configs
   )

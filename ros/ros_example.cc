@@ -1,6 +1,8 @@
 // app
 #include "app/app_example.h"
 // user
+#include "common/configs/configs.hpp"
+#include "config/global_defination.h"
 #include "cpptemplates2/demo.h"
 #include "tools/rosbag.h"
 // ros
@@ -31,29 +33,16 @@ int main(int argc, char* argv[]) {
   /****************************************/
   /*      configure from command line     */
   /****************************************/
-  std::string config_file;
-  std::string bag_file;
-  if (argc <= 1) {
-    std::cout << "usage: " << argv[0] << " config_file [bag_file]" << std::endl;
-    return -1;
-  }
-  if (argc >= 2) {
-    config_file = argv[1];
-  }
-  if (argc >= 3) {
-    bag_file = argv[2];
-  }
-  ROS_INFO_STREAM("loading config from '" << config_file << "'.");
-  if (bag_file.empty()) {
-    ROS_INFO_STREAM("no bag file, run in native ros.");
-  } else {
-    ROS_INFO_STREAM("loading rosbag from '" << bag_file << "'.");
-  }
-
+  std::string config_file_path = WORK_SPACE_PATH + "/config/ros_example.yaml";
+  Configs     cfg;
+  ConfigDef(cfg, std::string, bag_file);
+  ConfigDef(cfg, std::string, AppExampleConfig);
+  cfg.Open(config_file_path);
+  cfg.LoadOnce();
   /****************************************/
   /*            configure app             */
   /****************************************/
-  app = std::make_unique<AppExample>(config_file);
+  app = std::make_unique<AppExample>(AppExampleConfig);
 
   /****************************************/
   /*            configure ros             */
