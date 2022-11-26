@@ -3,24 +3,27 @@
 {
 	"name": "CppTemplates-dev",
 	"build": {
-		"dockerfile": "Dockerfile",
+		"dockerfile": "Dockerfile"
 	},
 	// Set *default* container specific settings.json values on container create.
 	"settings": {
 		"terminal.integrated.shell.linux": "/bin/bash",
 		"ros.distro": "melodic",
-		"C_Cpp.intelliSenseEngine": "Disabled"
+		"C_Cpp.intelliSenseEngine": "Disabled",
+		"C_Cpp.autocomplete": "Disabled"
 	},
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
 		"ms-vscode.cpptools",
-		"ms-iot.vscode-ros",
-		"twxs.cmake",
 		"llvm-vs-code-extensions.vscode-clangd",
-		"mhutchie.git-graph",
 		"ms-vscode.cmake-tools",
-		"cschlosser.doxdocgen",
+		"twxs.cmake",
+		"cheshirekow.cmake-format",
+		"ms-iot.vscode-ros",
+		"mhutchie.git-graph",
 		"matepek.vscode-catch2-test-adapter",
+		"cschlosser.doxdocgen",
+		"usernamehw.errorlens",
 		"seatonjiang.gitmoji-vscode"
 	],
 	"runArgs": [
