@@ -15,6 +15,12 @@ add_message_files(DIRECTORY
                   demo.msg
   )
 
+add_service_files(DIRECTORY
+                  srv
+                  FILES
+                  func.srv
+  )
+
 generate_messages(DEPENDENCIES std_msgs)
 
 include_directories(${catkin_INCLUDE_DIRS})
@@ -33,9 +39,4 @@ target_link_libraries(ros_tools PRIVATE)
 # ##############################################################################
 add_executable(ros_example ros_example.cc)
 target_include_directories(ros_example PRIVATE ${catkin_INCLUDE_DIRS})
-target_link_libraries(
-  ros_example
-  PRIVATE ros_tools
-          app_example
-          configs
-  )
+target_link_libraries(ros_example PRIVATE ros_tools app_example configs)
