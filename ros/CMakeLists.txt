@@ -7,6 +7,7 @@ find_package(catkin REQUIRED
                         std_msgs
                         sensor_msgs
                         message_generation
+                        dynamic_reconfigure
   )
 
 add_message_files(DIRECTORY
@@ -16,6 +17,8 @@ add_message_files(DIRECTORY
   )
 
 generate_messages(DEPENDENCIES std_msgs)
+
+generate_dynamic_reconfigure_options(ros/cfg/app_param.cfg)
 
 include_directories(${catkin_INCLUDE_DIRS})
 

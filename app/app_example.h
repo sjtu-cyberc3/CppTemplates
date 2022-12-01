@@ -19,6 +19,7 @@ class AppExample {
   /****************************************/
   void feed_str(const std::string& str);
   void feed_int(int x);
+  void feed_dcfg(int int_param, double double_param, const std::string& str_param);
 
   /****************************************/
   /*        main process function         */

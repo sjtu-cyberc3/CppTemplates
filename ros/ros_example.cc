@@ -6,6 +6,8 @@
 #include "cpptemplates2/demo.h"
 #include "tools/rosbag.h"
 // ros
+#include "cpptemplates2/DParamConfig.h"
+#include <dynamic_reconfigure/server.h>
 #include <ros/ros.h>
 #include <std_msgs/Int32.h>
 #include <std_msgs/String.h>
@@ -27,6 +29,10 @@ void str_callback(std_msgs::StringConstPtr str_msg) {
 }
 void int_callback(std_msgs::Int32ConstPtr int_msg) {
   app->feed_int(int_msg->data);
+}
+
+void dcfg_callback(cpptemplates2::DParamConfig& cfg, uint32_t /*level*/) {
+  app->feed_dcfg(cfg.int_param, cfg.double_param, cfg.str_param);
 }
 
 int main(int argc, char* argv[]) {
@@ -57,6 +63,10 @@ int main(int argc, char* argv[]) {
   // publisher here
   ros::Publisher rst_pub       = nh.advertise<std_msgs::String>("/rst", 1);
   ros::Publisher rst_stamp_pub = nh.advertise<cpptemplates2::demo>("/rst_stamp", 1);
+
+  // dynamic reconfigure here
+  dynamic_reconfigure::Server<cpptemplates2::DParamConfig> dcfg_server;
+  dcfg_server.setCallback(&dcfg_callback);
   /****************************************/
   /*            configure bag             */
   /****************************************/
