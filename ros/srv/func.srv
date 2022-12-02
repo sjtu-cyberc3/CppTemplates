@@ -1,0 +1,4 @@
+string arg0
+int32  arg1
+---
+string result

@@ -3,10 +3,12 @@
 // user
 #include "common/configs/configs.hpp"
 #include "config/global_defination.h"
+#include "cpptemplates2/DParamConfig.h"
 #include "cpptemplates2/demo.h"
+#include "cpptemplates2/func.h"
 #include "tools/rosbag.h"
 // ros
-#include "cpptemplates2/DParamConfig.h"
+
 #include <dynamic_reconfigure/server.h>
 #include <ros/ros.h>
 #include <std_msgs/Int32.h>
@@ -29,6 +31,10 @@ void str_callback(std_msgs::StringConstPtr str_msg) {
 }
 void int_callback(std_msgs::Int32ConstPtr int_msg) {
   app->feed_int(int_msg->data);
+}
+bool srv_callback(cpptemplates2::funcRequest& req, cpptemplates2::funcResponse& res) {
+  res.result = app->service(req.arg0, req.arg1);
+  return true;
 }
 
 void dcfg_callback(cpptemplates2::DParamConfig& cfg, uint32_t /*level*/) {
@@ -67,6 +73,9 @@ int main(int argc, char* argv[]) {
   // dynamic reconfigure here
   dynamic_reconfigure::Server<cpptemplates2::DParamConfig> dcfg_server;
   dcfg_server.setCallback(&dcfg_callback);
+  // service here
+  ros::ServiceServer srv = nh.advertiseService("/demo_srv", srv_callback);
+
   /****************************************/
   /*            configure bag             */
   /****************************************/

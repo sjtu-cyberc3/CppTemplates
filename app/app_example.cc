@@ -58,3 +58,7 @@ std::optional<std::string> AppExample::get_rst() {
   rst_queue.pop();
   return std::move(rst);
 }
+
+std::string AppExample::service(const std::string& arg0, int arg1) {
+  return arg0 + std::to_string(arg1);
+}

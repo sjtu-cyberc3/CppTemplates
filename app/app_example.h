@@ -31,6 +31,11 @@ class AppExample {
   /****************************************/
   std::optional<std::string> get_rst();
 
+  /****************************************/
+  /*           service functions          */
+  /****************************************/
+  std::string service(const std::string &arg0, int arg1);
+
  private:
   /****************************************/
   /*      sensor data cache buffer        */
