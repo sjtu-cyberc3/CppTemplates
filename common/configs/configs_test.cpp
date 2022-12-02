@@ -6,7 +6,7 @@
 #include "configs.hpp"
 
 TEST(configs, loadsingle) {
-  std::string config_file_path = WORK_SPACE_PATH + "/common/configs_example.yaml";
+  std::string config_file_path = CONFIGS_EXAMPLE_PATH;
 
   Configs cfg;
   ConfigDef(cfg, int, param1);
