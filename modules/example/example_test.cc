@@ -12,7 +12,6 @@
 
 #include <gtest/gtest.h>
 
-#include "config/global_defination.h"
 #include "example.h"
 
 TEST(example, get_age) {

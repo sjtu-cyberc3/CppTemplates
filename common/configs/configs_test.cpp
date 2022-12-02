@@ -2,7 +2,6 @@
 
 #include <gtest/gtest.h>
 
-#include "config/global_defination.h"
 #include "configs.hpp"
 
 TEST(configs, loadsingle) {
