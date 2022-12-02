@@ -1,4 +1,5 @@
 #include "app_example.h"
+#include <iostream>
 
 AppExample::AppExample(const std::string& config_file) {
   // in this example, we do not need a config file.
@@ -13,6 +14,11 @@ void AppExample::feed_str(const std::string& str) {
 void AppExample::feed_int(int x) {
   std::unique_lock lock(int_mtx);
   int_queue.emplace(x);
+}
+
+void AppExample::feed_dcfg(int int_param, double double_param, const std::string& str_param) {
+  std::cout << "dynamic param reciveced!\n";
+  std::cout << "int: " << int_param << " double: " << double_param << " str: " << str_param << std::endl;
 }
 
 void AppExample::process() {
