@@ -10,4 +10,5 @@ target_link_libraries(
   -pthread
   ${GTEST_BOTH_LIBRARIES}
   )
+  target_compile_definitions(configs_test PRIVATE -DCONFIGS_EXAMPLE_PATH="${CMAKE_CURRENT_SOURCE_DIR}/configs_example.yaml")
 gtest_discover_tests(configs_test)
