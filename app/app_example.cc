@@ -17,7 +17,7 @@ void AppExample::feed_int(int x) {
 }
 
 void AppExample::feed_dcfg(int int_param, double double_param, const std::string& str_param) {
-  std::cout << "dynamic param reciveced!\n";
+  std::cout << "dynamic param received!\n";
   std::cout << "int: " << int_param << " double: " << double_param << " str: " << str_param << std::endl;
 }
 
