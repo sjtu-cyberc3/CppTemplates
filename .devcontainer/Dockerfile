@@ -21,10 +21,12 @@ WORKDIR /usr/src/gtest
 RUN cmake .
 RUN make
 RUN mv libg* /usr/lib/
+# External packages
+CMD [ "/bin/bash" , "toolchains.sh"]
 # Prepare for working dir
 RUN chown -R $USERNAME /home/${USERNAME}
 USER $USERNAME
 RUN echo 'source /opt/ros/melodic/setup.bash' >> /home/$USERNAME/.bashrc
 COPY cmake-tools-kits.json /home/${USERNAME}/.local/share/CMakeTools/
 # Copy scripts to container
-COPY toolchains.sh /home/${USERNAME}/
+# COPY toolchains.sh /home/${USERNAME}/
