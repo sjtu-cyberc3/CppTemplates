@@ -2,19 +2,20 @@
 #include "app/app_example.h"
 // user
 #include "common/configs/configs.hpp"
-#include "config/global_defination.h"
 #include "cpptemplates2/DParamConfig.h"
 #include "cpptemplates2/demo.h"
 #include "cpptemplates2/func.h"
 #include "tools/rosbag.h"
 // ros
-
 #include <dynamic_reconfigure/server.h>
 #include <ros/ros.h>
 #include <std_msgs/Int32.h>
 #include <std_msgs/String.h>
 // standard c++
+#include <filesystem>
 #include <memory>
+
+namespace fs = std::filesystem;
 
 /****************************************/
 /*            user app here             */
@@ -45,7 +46,7 @@ int main(int argc, char* argv[]) {
   /****************************************/
   /*      configure from command line     */
   /****************************************/
-  std::string config_file_path = WORK_SPACE_PATH + "/config/ros_example.yaml";
+  std::string config_file_path = fs::path(WORK_SPACE_PATH) / "config/ros_example.yaml";
   Configs     cfg;
   ConfigDef(cfg, std::string, bag_file);
   ConfigDef(cfg, std::string, AppExampleConfig);

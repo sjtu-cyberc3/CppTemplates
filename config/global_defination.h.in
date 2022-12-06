@@ -1,5 +1,0 @@
-#pragma once
-
-#include <string>
-
-const std::string WORK_SPACE_PATH = "@WORK_SPACE_PATH@";

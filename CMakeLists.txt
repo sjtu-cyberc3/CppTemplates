@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.5)
 project(cpptemplates2)
 
 # ##############################################################################
@@ -16,9 +16,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # ##############################################################################
 # Compiler Defines
 # ##############################################################################
-# add_compile_definitions(VERSION_MAJOR=${VERSION_MAJOR})
-# add_compile_definitions(VERSION_MINOR=${VERSION_MINOR})
-# add_compile_definitions( WORK_SPACE_PATH="${CMAKE_CURRENT_SOURCE_DIR}")
+add_compile_options(-DWORK_SPACE_PATH="${CMAKE_CURRENT_SOURCE_DIR}")
 
 # ##############################################################################
 # Compiler Options
@@ -38,10 +36,6 @@ endif()
 # ##############################################################################
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_SOURCE_DIR}/cmake)
 include_directories(.)
-
-# global_defination ###
-set(WORK_SPACE_PATH ${PROJECT_SOURCE_DIR})
-include(${CMAKE_MODULE_PATH}/global_defination.cmake)
 
 # glog ###
 find_package(Glog REQUIRED)
