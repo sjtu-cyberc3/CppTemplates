@@ -16,3 +16,6 @@ sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 9
 # install latest clangd
 sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
 sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-15 100
+
+#install latest doxygen
+sudo apt install doxygen
