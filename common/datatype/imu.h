@@ -1,6 +1,4 @@
 #pragma once
-#ifndef datatype_IMU_H
-#define datatype_IMU_H
 
 #include <Eigen/Core>
 #include <Eigen/Geometry>
@@ -35,5 +33,3 @@ inline std::istream& operator>>(std::istream& is, datatype::IMU& data) {
   is >> data.rot.w() >> data.rot.x() >> data.rot.y() >> data.rot.z();
   return is;
 }
-
-#endif  // datatype_IMU_H

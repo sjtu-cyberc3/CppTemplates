@@ -1,6 +1,4 @@
 #pragma once
-#ifndef datatype_IO_H
-#define datatype_IO_H
 
 #include <fstream>
 #include <sstream>
@@ -76,5 +74,3 @@ template <typename T> class SensorIO {
  private:
   std::fstream fs;
 };
-
-#endif  // datatype_IO_H

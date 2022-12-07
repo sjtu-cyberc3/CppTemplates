@@ -1,6 +1,4 @@
 #pragma once
-#ifndef datatype_KEYPOSE_H
-#define datatype_KEYPOSE_H
 
 #include <Eigen/Core>
 #include <Eigen/Geometry>
@@ -31,5 +29,3 @@ inline std::istream& operator>>(std::istream& is, datatype::KeyPose& data) {
   is >> static_cast<datatype::Pose&>(data);
   return is;
 }
-
-#endif  // datatype_POSE_H

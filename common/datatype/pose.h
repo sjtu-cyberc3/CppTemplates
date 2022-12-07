@@ -1,6 +1,4 @@
 #pragma once
-#ifndef datatype_POSE_H
-#define datatype_POSE_H
 
 #include <Eigen/Core>
 #include <Eigen/Geometry>
@@ -9,12 +7,10 @@
 #include <numeric>
 
 namespace datatype {
-
 struct Pose {
   Eigen::Vector3d    trans;
   Eigen::Quaterniond rot;
 };
-
 }  // namespace datatype
 
 inline std::ostream& operator<<(std::ostream& os, const datatype::Pose& data) {
@@ -29,5 +25,3 @@ inline std::istream& operator>>(std::istream& is, datatype::Pose& data) {
   is >> data.rot.w() >> data.rot.x() >> data.rot.y() >> data.rot.z();
   return is;
 }
-
-#endif  // datatype_POSE_H

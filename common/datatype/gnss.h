@@ -1,6 +1,4 @@
 #pragma once
-#ifndef datatype_GNSS_H
-#define datatype_GNSS_H
 
 #include <iomanip>
 #include <iostream>
@@ -40,5 +38,3 @@ inline std::istream& operator>>(std::istream& is, datatype::GNSS& data) {
   is >> data.local_E >> data.local_N >> data.local_U;
   return is;
 }
-
-#endif  // datatype_GNSS_H
