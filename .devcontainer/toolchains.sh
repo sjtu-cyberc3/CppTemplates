@@ -18,4 +18,4 @@ sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
 sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-15 100
 
 #install latest doxygen
-sudo apt install doxygen
+sudo apt install -y doxygen
