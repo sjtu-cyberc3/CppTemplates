@@ -2,9 +2,9 @@
 #include <yaml-cpp/exceptions.h>
 #include <yaml-cpp/node/parse.h>
 
-Configs::Configs(std::string file) : node_(YAML::LoadFile(file)) {}
+ConfigLoader::ConfigLoader(const std::string& file) : node_(YAML::LoadFile(file)) {}
 
-void Configs::LoadOnce() const {
+void ConfigLoader::load_once() const {
   for (const auto& cfg : configs_) {
     const auto& name   = cfg.first;
     const auto& setter = cfg.second;
@@ -16,6 +16,6 @@ void Configs::LoadOnce() const {
   }
 }
 
-void Configs::Open(std::string file) {
+void ConfigLoader::open(const std::string& file) {
   node_ = YAML::LoadFile(file);
 }

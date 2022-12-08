@@ -1,12 +1,12 @@
 #pragma once
+
+#include <yaml-cpp/yaml.h>
+
 #include <stdexcept>
-#ifndef CONFIGS_HPP
-#define CONFIGS_HPP
 
 #include <functional>
 #include <string>
 #include <unordered_map>
-#include <yaml-cpp/yaml.h>
 
 struct ConfigsError : std::runtime_error {
   using std::runtime_error::runtime_error;
@@ -20,17 +20,17 @@ struct ConfigLoadError : ConfigsError {
   using ConfigsError::ConfigsError;
 };
 
-class Configs {
+class ConfigLoader {
  public:
-  Configs() = default;
+  ConfigLoader() = default;
 
-  Configs(std::string file);
+  explicit ConfigLoader(const std::string& file);
 
-  template <typename T> void Add(std::string name, T* ptr);
+  template <typename T> void add(std::string name, T* ptr);
 
-  void LoadOnce() const;
+  void load_once() const;
 
-  void Open(std::string file);
+  void open(const std::string& file);
 
  private:
   YAML::Node node_;
@@ -38,16 +38,14 @@ class Configs {
   std::unordered_map<std::string, std::function<void(const YAML::Node&)>> configs_;
 };
 
-template <typename T> void Configs::Add(std::string name, T* ptr) {
+template <typename T> void ConfigLoader::add(std::string name, T* ptr) {
   if (configs_.count(name))
     throw ConfigAddError("'" + name + "' deplicate");
   configs_.emplace(name, [ptr](const YAML::Node& node) { *ptr = node.as<T>(); });
 }
 
-#define ConfigAdd(var) Add(#var, &var)
+#define ConfigAdd(var) add(#var, &(var))
 
 #define ConfigDef(cfg, type, var) \
   type var;                       \
-  cfg.ConfigAdd(var)
-
-#endif /* CONFIGS_HPP */
+  (cfg).ConfigAdd(var)

@@ -7,13 +7,13 @@ AppExample::AppExample(const std::string& config_file) {
 }
 
 void AppExample::feed_str(const std::string& str) {
-  std::unique_lock lock(str_mtx);
-  str_queue.emplace(str);
+  std::unique_lock lock(str_mtx_);
+  str_queue_.emplace(str);
 }
 
 void AppExample::feed_int(int x) {
-  std::unique_lock lock(int_mtx);
-  int_queue.emplace(x);
+  std::unique_lock lock(int_mtx_);
+  int_queue_.emplace(x);
 }
 
 void AppExample::feed_dcfg(int int_param, double double_param, const std::string& str_param) {
@@ -24,20 +24,20 @@ void AppExample::feed_dcfg(int int_param, double double_param, const std::string
 void AppExample::process() {
   // check sensor data valid first
   // in this example, we need both string and int.
-  if (str_queue.empty() || int_queue.empty()) {
+  if (str_queue_.empty() || int_queue_.empty()) {
     return;
   }
   // extract data
   std::string      str;
-  std::unique_lock str_lock(str_mtx);
-  str = std::move(str_queue.front());
-  str_queue.pop();
+  std::unique_lock str_lock(str_mtx_);
+  str = std::move(str_queue_.front());
+  str_queue_.pop();
   str_lock.unlock();
 
   int              x;
-  std::unique_lock int_lock(int_mtx);
-  x = std::move(int_queue.front());
-  int_queue.pop();
+  std::unique_lock int_lock(int_mtx_);
+  x = std::move(int_queue_.front());
+  int_queue_.pop();
   int_lock.unlock();
 
   // main process
@@ -45,17 +45,17 @@ void AppExample::process() {
   std::string rst = m_->do_work(str, x);
 
   // save result
-  std::unique_lock rst_lock(rst_mtx);
-  rst_queue.emplace(std::move(rst));
+  std::unique_lock rst_lock(rst_mtx_);
+  rst_queue_.emplace(std::move(rst));
   rst_lock.unlock();
 }
 
 std::optional<std::string> AppExample::get_rst() {
-  std::unique_lock rst_lock(rst_mtx);
-  if (rst_queue.empty())
+  std::unique_lock rst_lock(rst_mtx_);
+  if (rst_queue_.empty())
     return std::nullopt;
-  std::string rst = std::move(rst_queue.front());
-  rst_queue.pop();
+  std::string rst = std::move(rst_queue_.front());
+  rst_queue_.pop();
   return std::move(rst);
 }
 

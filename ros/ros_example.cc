@@ -30,9 +30,11 @@ std::unique_ptr<AppExample> app;
 void str_callback(std_msgs::StringConstPtr str_msg) {
   app->feed_str(str_msg->data);
 }
+
 void int_callback(std_msgs::Int32ConstPtr int_msg) {
   app->feed_int(int_msg->data);
 }
+
 bool srv_callback(cpptemplates2::funcRequest& req, cpptemplates2::funcResponse& res) {
   res.result = app->service(req.arg0, req.arg1);
   return true;
@@ -46,12 +48,12 @@ int main(int argc, char* argv[]) {
   /****************************************/
   /*      configure from command line     */
   /****************************************/
-  std::string config_file_path = fs::path(WORK_SPACE_PATH) / "config/ros_example.yaml";
-  Configs     cfg;
+  std::string  config_file_path = fs::path(WORK_SPACE_PATH) / "config/ros_example.yaml";
+  ConfigLoader cfg;
   ConfigDef(cfg, std::string, bag_file);
   ConfigDef(cfg, std::string, AppExampleConfig);
-  cfg.Open(config_file_path);
-  cfg.LoadOnce();
+  cfg.open(config_file_path);
+  cfg.load_once();
   /****************************************/
   /*            configure app             */
   /****************************************/

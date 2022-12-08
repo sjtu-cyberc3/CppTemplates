@@ -46,11 +46,13 @@ void BagPlayer::play_once() {
   auto      msg               = *(view_it_++);
   ros::Time curr_msg_bag_time = msg.getTime();
   ros::Time curr_msg_pub_time;
+
+  static bool first_play = true;
   if (first_play) {
     curr_msg_pub_time = ros::Time::now();
     first_play        = false;
   } else if (rate_ > 0) {
-    curr_msg_pub_time = prev_msg_pub_time + (curr_msg_bag_time - prev_msg_bag_time) * (1 / rate_);
+    curr_msg_pub_time = prev_msg_pub_time_ + (curr_msg_bag_time - prev_msg_bag_time_) * (1 / rate_);
     ros::Time::sleepUntil(curr_msg_pub_time);
   }
 
@@ -62,6 +64,6 @@ void BagPlayer::play_once() {
   }
   pub_it->second.publish(msg);
 
-  prev_msg_bag_time = curr_msg_bag_time;
-  prev_msg_pub_time = curr_msg_pub_time;
+  prev_msg_bag_time_ = curr_msg_bag_time;
+  prev_msg_pub_time_ = curr_msg_pub_time;
 }

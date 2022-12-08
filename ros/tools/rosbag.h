@@ -11,7 +11,7 @@
 
 class BagPlayer {
  public:
-  BagPlayer(ros::NodeHandle nh);
+  explicit BagPlayer(ros::NodeHandle nh);
 
   bool open(const std::string& filename, std::vector<std::string> topics = {});
 
@@ -38,10 +38,8 @@ class BagPlayer {
   rosbag::View::const_iterator          view_it_;
   rosbag::View::const_iterator          view_end_;
 
-  ros::Time prev_msg_bag_time;
-  ros::Time prev_msg_pub_time;
-
-  bool first_play = true;
+  ros::Time prev_msg_bag_time_;
+  ros::Time prev_msg_pub_time_;
 
   int queue_size_ = 0;
 
