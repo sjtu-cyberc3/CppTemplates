@@ -1,6 +1,6 @@
 # C++编程模版
     
-在以往的涉及到ROS的项目开发中，有一些通用问题阻碍了C++开发与调试工作的有序进行。我们希望构建一个标准化C++工程模块，模块化开发，辅以规范，以提高工作效率和代码质量，降低项目工期。
+在以往涉及到ROS的程序开发中，有一些通用问题阻碍了C++开发与调试工作的有序进行。我们希望构建一个标准化C++模板，模块化开发，辅以规范，以提高工作效率和代码质量。
 
 ## Main Features
 
@@ -12,12 +12,11 @@
 + 使用现代C++工具，包括
 
 ### 功能架构
-
-
  + 模块层-modules：包含可复用的功能子模块，以及公共算法库common
  + 业务层-app：实现业务流程，将各modules拼接起来以实现最终功能
  + 通信层-ros：利用ros实现数据订阅、发布的封装
  ![image](https://github.com/Arthurshen926/CppTemplates/blob/main/%E6%B5%81%E7%A8%8B%E5%9B%BE.jpg?raw=true)
+
 ### 代码规范
 + 命名规范：Google style  (文件、变量、函数、命名空间…)
 + 代码格式化：Clang-format、CMake-format
@@ -34,7 +33,6 @@
     + logger: 基于glog的日志系统
     + configs: yaml参数文件读取  
     + benchmark: 运行时间、性能分析
-
 
 ## Prerequisite
 + OS：Ubuntu18.04
@@ -53,7 +51,7 @@
 
 ### Docker
 + 本项目提供Docker环境，支持开箱即用
-+ 需要先进行环境配置，详见[VSCode Docker开发环境配置](https://sjtu.feishu.cn/wiki/wikcnsbnAh5l1UIkUKyYTnz7q1c)
++ 需要先进行环境配置，详见[VSCode Docker开发环境配置](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
 + 配置好VSCode + Docker + Devcontainer插件后，进入`.devcontainer`文件夹，点击`Open Folder in Containers`即可自动配置好Docker
 ### Adjust the template to your needs
 + Use this repo as a templete.
@@ -81,7 +79,6 @@ roscore
 ## FAQ
 ## Related projects
 
-详细文档请大家参考[链接](https://sjtu.feishu.cn/docx/Ns7ldBtpJoisyKxcY5Tc3rgSnJc)
 
 
 
