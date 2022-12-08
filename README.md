@@ -17,7 +17,7 @@
  + 模块层-modules：包含可复用的功能子模块，以及公共算法库common
  + 业务层-app：实现业务流程，将各modules拼接起来以实现最终功能
  + 通信层-ros：利用ros实现数据订阅、发布的封装
- ![image](https://github.com/Arthurshen926/CppTemplates/blob/main/structure2.png?raw=true)
+ ![image](https://github.com/Arthurshen926/CppTemplates/blob/main/%E6%B5%81%E7%A8%8B%E5%9B%BE.jpg?raw=true)
 ### 代码规范
 + 命名规范：Google style  (文件、变量、函数、命名空间…)
 + 代码格式化：Clang-format、CMake-format
