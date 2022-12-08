@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>cpptemplates2</name>
+  <name>cpptemplates</name>
   <version>1.0.0</version>
   <description>The Module SLAM package</description>
 
-  <maintainer email="cpptemplates2@cyberc3.com">todo</maintainer>
+  <maintainer email="cpptemplates@cyberc3.com">todo</maintainer>
 
   <license>TODO</license>
 

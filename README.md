@@ -72,7 +72,7 @@ cd catkin_ws && catkin_make
 # Run
 ./build/modules/example/module_example_test
 roscore
-./build/devel/lib/cpptemplates2/ros_example
+./build/devel/lib/cpptemplates/ros_example
 ```
 
 
