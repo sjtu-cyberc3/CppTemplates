@@ -2,15 +2,13 @@
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.205.2/containers/ubuntu
 {
 	"name": "CppTemplates-dev",
-	"build": {
-		"dockerfile": "Dockerfile"
-	},
+	"image": "ghcr.io/sjtu-cyberc3/cpptemplates:melodic",
 	// Set *default* container specific settings.json values on container create.
 	"settings": {
-		"terminal.integrated.shell.linux": "/bin/bash",
+		"terminal.integrated.defaultProfile.linux": "bash",
 		"ros.distro": "melodic",
-		"C_Cpp.intelliSenseEngine": "Disabled",
-		"C_Cpp.autocomplete": "Disabled"
+		"C_Cpp.intelliSenseEngine": "disabled",
+		"C_Cpp.autocomplete": "disabled"
 	},
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [

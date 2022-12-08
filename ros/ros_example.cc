@@ -2,9 +2,9 @@
 #include "app/app_example.h"
 // user
 #include "common/configs/configs.hpp"
-#include "cpptemplates2/DParamConfig.h"
-#include "cpptemplates2/demo.h"
-#include "cpptemplates2/func.h"
+#include "cpptemplates/DParamConfig.h"
+#include "cpptemplates/demo.h"
+#include "cpptemplates/func.h"
 #include "tools/rosbag.h"
 // ros
 #include <dynamic_reconfigure/server.h>
@@ -35,12 +35,12 @@ void int_callback(std_msgs::Int32ConstPtr int_msg) {
   app->feed_int(int_msg->data);
 }
 
-bool srv_callback(cpptemplates2::funcRequest& req, cpptemplates2::funcResponse& res) {
+bool srv_callback(cpptemplates::funcRequest& req, cpptemplates::funcResponse& res) {
   res.result = app->service(req.arg0, req.arg1);
   return true;
 }
 
-void dcfg_callback(cpptemplates2::DParamConfig& cfg, uint32_t /*level*/) {
+void dcfg_callback(cpptemplates::DParamConfig& cfg, uint32_t /*level*/) {
   app->feed_dcfg(cfg.int_param, cfg.double_param, cfg.str_param);
 }
 
@@ -71,10 +71,10 @@ int main(int argc, char* argv[]) {
 
   // publisher here
   ros::Publisher rst_pub       = nh.advertise<std_msgs::String>("/rst", 1);
-  ros::Publisher rst_stamp_pub = nh.advertise<cpptemplates2::demo>("/rst_stamp", 1);
+  ros::Publisher rst_stamp_pub = nh.advertise<cpptemplates::demo>("/rst_stamp", 1);
 
   // dynamic reconfigure here
-  dynamic_reconfigure::Server<cpptemplates2::DParamConfig> dcfg_server;
+  dynamic_reconfigure::Server<cpptemplates::DParamConfig> dcfg_server;
   dcfg_server.setCallback(&dcfg_callback);
   // service here
   ros::ServiceServer srv = nh.advertiseService("/demo_srv", srv_callback);
@@ -113,7 +113,7 @@ int main(int argc, char* argv[]) {
       rst_msg->data = std::move(result.value());
       rst_pub.publish(rst_msg);
 
-      cpptemplates2::demo rst_msg_stamp;
+      cpptemplates::demo rst_msg_stamp;
       rst_msg_stamp.str          = rst_msg->data;
       rst_msg_stamp.header.stamp = ros::Time::now();
       rst_stamp_pub.publish(rst_msg_stamp);
