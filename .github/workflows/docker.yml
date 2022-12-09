@@ -2,9 +2,9 @@ name: Docker Build
 
 on:
   push:
-    paths: Dockerfile
+    paths: .devcontainer/Dockerfile
   pull_request:
-    paths: Dockerfile
+    paths: .devcontainer/Dockerfile
   schedule:
     - cron: '0 0 1 * *'
 
