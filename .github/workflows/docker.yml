@@ -10,7 +10,7 @@ on:
 
 jobs:
   docker-build-and-push:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
@@ -35,10 +35,35 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push image
+      - name: Build and push image melodic
         uses: docker/build-push-action@v2
         with:
           context: .
+          file: .devcontainer/Dockerfile
+          build-args: 
+            ROS_DISTRO: melodic
           platforms: linux/amd64, linux/arm64
           push: true
           tags: ghcr.io/sjtu-cyberc3/cpptemplates:melodic
+      
+      - name: Build and push image noetic
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: .devcontainer/Dockerfile
+          build-args: 
+            ROS_DISTRO: noetic
+          platforms: linux/amd64, linux/arm64
+          push: true
+          tags: ghcr.io/sjtu-cyberc3/cpptemplates:noetic
+           
+      - name: Build and push image galactic
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: .devcontainer/Dockerfile
+          build-args: 
+            ROS_DISTRO: galactic
+          platforms: linux/amd64, linux/arm64
+          push: true
+          tags: ghcr.io/sjtu-cyberc3/cpptemplates:galactic

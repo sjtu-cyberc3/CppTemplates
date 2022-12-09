@@ -1,7 +1,7 @@
 [
     {
         "name": "Default GCC Kit",
-        "environmentSetupScript": "/opt/ros/melodic/setup.bash",
+        "environmentSetupScript": "/opt/ros/$ROS_DISTRO/setup.bash",
         "compilers": {
             "C": "/usr/bin/gcc",
             "CXX": "/usr/bin/g++"

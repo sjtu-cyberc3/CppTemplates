@@ -2,7 +2,7 @@
 
 #include <iomanip>
 #include <iostream>
-#include <numeric>
+#include <limits>
 
 namespace datatype {
 
