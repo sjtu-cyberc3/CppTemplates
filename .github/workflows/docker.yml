@@ -40,8 +40,7 @@ jobs:
         with:
           context: .
           file: .devcontainer/Dockerfile
-          build-args: 
-            ROS_DISTRO: melodic
+          build-args: [ROS_DISTRO=melodic]
           platforms: linux/amd64, linux/arm64
           push: true
           tags: ghcr.io/sjtu-cyberc3/cpptemplates:melodic
@@ -51,8 +50,7 @@ jobs:
         with:
           context: .
           file: .devcontainer/Dockerfile
-          build-args: 
-            ROS_DISTRO: noetic
+          build-args: [ROS_DISTRO=noetic]
           platforms: linux/amd64, linux/arm64
           push: true
           tags: ghcr.io/sjtu-cyberc3/cpptemplates:noetic
@@ -62,8 +60,7 @@ jobs:
         with:
           context: .
           file: .devcontainer/Dockerfile
-          build-args: 
-            ROS_DISTRO: galactic
+          build-args: [ROS_DISTRO=galactic]
           platforms: linux/amd64, linux/arm64
           push: true
           tags: ghcr.io/sjtu-cyberc3/cpptemplates:galactic
