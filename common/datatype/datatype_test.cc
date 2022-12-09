@@ -1,9 +1,9 @@
 // datatype
 #include "gnss.h"
 #include "imu.h"
-#include "io.h"
 #include "keypose.h"
 #include "pose.h"
+#include "io.h"
 // gtest
 #include <gtest/gtest.h>
 // standard
