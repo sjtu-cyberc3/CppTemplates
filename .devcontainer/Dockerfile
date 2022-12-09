@@ -12,9 +12,9 @@ RUN apt-get update \
 # install gcc
 RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test \
     && apt-get update \
-    && apt-get install -y gcc-11 g++-11 gdb build-essential ninja-build \
-    && update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 11 \
-    && update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-11 11 \
+    && apt-get install -y gcc-9 gcc-9 gcc-11 g++-11 gdb build-essential ninja-build \
+    && update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 9 \
+    && update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 9 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 # install cmake
