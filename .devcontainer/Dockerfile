@@ -4,7 +4,7 @@ FROM ros:$ROS_DISTRO
 RUN apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y software-properties-common apt-utils \
-                          bash-completion openssh-server wget curl vim tmux git sudo \
+                          bash-completion openssh-client wget curl vim tmux git sudo \
                           libgtest-dev libgoogle-glog-dev libyaml-cpp-dev libeigen3-dev libfmt-dev \
     && apt-get autoremove -y \
     && apt-get clean \
@@ -26,8 +26,9 @@ RUN wget https://apt.kitware.com/kitware-archive.sh \
     && rm -rf /var/lib/apt/lists/*
 # install llvm
 RUN wget https://apt.llvm.org/llvm.sh \
-    && bash llvm.sh 15 all \
+    && bash llvm.sh 15 \
     && rm llvm.sh \
+    && apt-get autoremove -y clang-15 lldb-15 lld-15 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* 
 ENV PATH="/usr/lib/llvm-15/bin:${PATH}"
