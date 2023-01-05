@@ -7,23 +7,5 @@
             "C": "/usr/bin/gcc-9",
             "CXX": "/usr/bin/g++-9"
         }
-    },
-    {
-        "name": "GCC 11 With ROS Environment",
-        "environmentSetupScript": "/opt/ros/$ROS_DISTRO/setup.bash",
-        "preferredGenerator": {"name": "Ninja"},
-        "compilers": {
-            "C": "/usr/bin/gcc-11",
-            "CXX": "/usr/bin/g++-11"
-        }
-    },
-    {
-        "name": "Clang 15 With ROS Environment",
-        "environmentSetupScript": "/opt/ros/$ROS_DISTRO/setup.bash",
-        "preferredGenerator": {"name": "Ninja"},
-        "compilers": {
-            "C": "/usr/bin/clang-15",
-            "CXX": "/usr/bin/clang++-15"
-        }
     }
 ]
