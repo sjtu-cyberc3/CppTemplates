@@ -41,7 +41,7 @@ RUN cd /usr/src/gtest \
 # build fmt-9.1.0
 RUN wget https://github.com/fmtlib/fmt/archive/refs/tags/9.1.0.tar.gz \
     && tar -zxvf 9.1.0.tar.gz \
-    && rm 9.1.0.tar.gz
+    && rm 9.1.0.tar.gz \
     && cd fmt-9.1.0 \
     && cmake -B build -DFMT_TEST=OFF \
     && cmake --build build --parallel $(nproc) \
