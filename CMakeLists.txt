@@ -10,7 +10,7 @@ set(VERSION_MINOR 0)
 # ##############################################################################
 # C++ Standard
 # ##############################################################################
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # ##############################################################################
@@ -55,6 +55,10 @@ link_libraries(${YAML_CPP_LIBRARIES})
 # fmt
 find_package(fmt 9.1.0 REQUIRED)
 link_libraries(fmt::fmt)
+
+# eigen
+find_package(Eigen3 3.3 REQUIRED)
+include_directories(${EIGEN3_INCLUDE_DIRS})
 
 # threading
 find_package(Threads REQUIRED)
