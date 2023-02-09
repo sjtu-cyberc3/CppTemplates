@@ -1,13 +1,8 @@
-project(module_example)
+project(modules_example)
 
-add_library(module_example SHARED example.cc)
-target_link_libraries(module_example)
+add_library(modules_example src/example.cc)
+add_library(modules::example ALIAS modules_example)
+target_include_directories(modules_example PUBLIC include)
 
-add_executable(module_example_test example_test.cc)
-target_link_libraries(
-  module_example_test
-  module_example
-  ${GTEST_BOTH_LIBRARIES}
-  -pthread
-  )
-gtest_discover_tests(module_example_test)
+add_gtest(module_example_test test/example_test.cc)
+target_link_libraries(module_example_test modules::example)

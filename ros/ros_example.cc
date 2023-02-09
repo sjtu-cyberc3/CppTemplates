@@ -1,7 +1,7 @@
 // app
 #include "app/app_example.h"
 // user
-#include "common/configs/configs.hpp"
+#include "common/configs.hpp"
 #include "cpptemplates/DParamConfig.h"
 #include "cpptemplates/demo.h"
 #include "cpptemplates/func.h"
