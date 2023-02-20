@@ -48,15 +48,6 @@ RUN wget https://github.com/fmtlib/fmt/archive/refs/tags/9.1.0.tar.gz \
     && cmake --install build \
     && cd .. \
     && rm -rf fmt-9.1.0
-# build custom yaml-cpp
-RUN wget https://github.com/xinyang-go/yaml-cpp/archive/refs/tags/yaml-cpp-sfinae.tar.gz \
-    && tar -zxvf yaml-cpp-sfinae.tar.gz \
-    && cd yaml-cpp-yaml-cpp-sfinae \
-    && cmake -B build -DCMAKE_BUILD_TYPE=Release \
-    && cmake --build build --parallel $(nproc) \
-    && cmake --install build \
-    && cd .. \
-    && rm yaml-cpp* -rf 
 # create user
 ARG USERNAME=cyber
 ARG USER_UID=1000

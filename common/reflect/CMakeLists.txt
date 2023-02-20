@@ -1,5 +1,5 @@
-find_package(yaml-cpp 0.7.0 REQUIRED)
-find_package(fmt 9 REQUIRED)
+find_package(yaml-cpp 0.5 REQUIRED)
+find_package(fmt 6.0 REQUIRED)
 
 add_library(reflect INTERFACE)
 add_library(common::reflect ALIAS reflect)

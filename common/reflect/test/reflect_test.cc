@@ -429,7 +429,7 @@ TEST(reflect, yaml_c) {
 }
 
 TEST(reflect, yaml_d) {
-    D                 d_out, d_in;
+  D                 d_out, d_in;
   d_out.a.a = 1;
   d_out.b.a = 2;
   d_out.b.b = 3;

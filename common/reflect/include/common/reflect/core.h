@@ -2,13 +2,20 @@
 
 #include <boost/preprocessor.hpp>
 
+// clang-format off
+
+#ifndef REFLECT_YAML
+#define REFLECT_YAML(...)
+#endif
+
 #define STRUCT_INFO(C, Bases, Public) CLASS_INFO(C, Bases, Public, , )
 #define CLASS_INFO(C, Bases, Public, Protected, Private)                                                                                            \
   template <> constexpr inline bool reflect::is_reflectable_v<C> = true;                                                                            \
   template <> constexpr auto        reflect::ClassInfo<C>::base_infos() { return std::make_tuple(BOOST_PP_SEQ_FOR_EACH_I(BASE_INFO, C, Bases)); }   \
   template <> constexpr auto        reflect::ClassInfo<C>::public_infos() { return std::make_tuple(BOOST_PP_SEQ_FOR_EACH_I(VAR_INFO, C, Public)); } \
   template <> constexpr auto reflect::ClassInfo<C>::protected_infos() { return std::make_tuple(BOOST_PP_SEQ_FOR_EACH_I(VAR_INFO, C, Protected)); }  \
-  template <> constexpr auto reflect::ClassInfo<C>::private_infos() { return std::make_tuple(BOOST_PP_SEQ_FOR_EACH_I(VAR_INFO, C, Private)); }
+  template <> constexpr auto reflect::ClassInfo<C>::private_infos() { return std::make_tuple(BOOST_PP_SEQ_FOR_EACH_I(VAR_INFO, C, Private)); }      \
+  REFLECT_YAML(C)
 
 #define BASE_INFO(r, c, i, b)                                             \
   BOOST_PP_COMMA_IF(i)[]() {                                              \
@@ -56,6 +63,9 @@ template <typename T, typename F> constexpr void tuple_foreach(const T& tuple, F
 
 namespace reflect {
 template <typename T> constexpr bool is_reflectable_v = false;
+template <typename T> struct c : T {
+  static_assert(is_reflectable_v<T>);
+};
 template <typename T> struct ClassInfo {
   static_assert(is_reflectable_v<T>);
   static constexpr auto base_infos(){};

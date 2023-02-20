@@ -3,18 +3,24 @@
 #include "core.h"
 #include <yaml-cpp/yaml.h>
 
-namespace YAML {
-template <typename T> struct convert<T, std::enable_if_t<reflect::is_reflectable_v<T>, void>> {
-  static Node encode(const T& obj) {
-    Node node;
-    reflect::public_foreach_recursive<T>([&](auto info) { node[info.name().data()] = obj.*info.ptr(); });
-    return node;
+#ifdef REFLECT_YAML
+#undef REFLECT_YAML
+#endif
+#define REFLECT_YAML(Class)                                                    \
+  namespace YAML {                                                             \
+  template <> struct convert<Class> {                                          \
+    static Node encode(const Class &obj) {                                     \
+      Node node;                                                               \
+      reflect::public_foreach_recursive<Class>(                                \
+          [&](auto info) { node[info.name().data()] = obj.*info.ptr(); });     \
+      return node;                                                             \
+    }                                                                          \
+    static bool decode(const Node &node, Class &obj) {                         \
+      reflect::public_foreach_recursive<Class>([&](auto info) {                \
+        obj.*info.ptr() = node[info.name().data()]                             \
+                              .template as<typename decltype(info)::type>();   \
+      });                                                                      \
+      return true;                                                             \
+    }                                                                          \
+  };                                                                           \
   }
-
-  static bool decode(const Node& node, T& obj) {
-    reflect::public_foreach_recursive<T>(
-      [&](auto info) { obj.*info.ptr() = node[info.name().data()].template as<typename decltype(info)::type>(); });
-    return true;
-  }
-};
-}  // namespace YAML
