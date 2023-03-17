@@ -5,7 +5,7 @@ RUN apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y software-properties-common apt-utils \
                           bash-completion openssh-client wget curl vim tmux git sudo \
-                          libgtest-dev libgoogle-glog-dev libeigen3-dev \
+                          libgtest-dev libgoogle-glog-dev libeigen3-dev libyaml-cpp-dev \
     && apt-get autoremove -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
