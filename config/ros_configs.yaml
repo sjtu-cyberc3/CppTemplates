@@ -1,0 +1,4 @@
+# bag_file: ""
+bag_file: ../ros/ros_example.bag
+bag_rate: 1.0
+app_config: app_configs.yaml

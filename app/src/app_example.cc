@@ -7,11 +7,13 @@ AppExample::AppExample(const std::string& config_file) {
 }
 
 void AppExample::feed_str(const std::string& str) {
+  std::cout << __PRETTY_FUNCTION__ << " [str = " << str << "]" << std::endl;
   std::unique_lock lock(str_mtx_);
   str_queue_.emplace(str);
 }
 
 void AppExample::feed_int(int x) {
+  std::cout << __PRETTY_FUNCTION__ << " [x = " << x << "]" << std::endl;
   std::unique_lock lock(int_mtx_);
   int_queue_.emplace(x);
 }
