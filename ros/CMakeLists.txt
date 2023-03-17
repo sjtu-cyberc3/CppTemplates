@@ -10,6 +10,8 @@ find_package(catkin REQUIRED
                         dynamic_reconfigure
   )
 
+find_package(yaml-cpp REQUIRED)
+
 add_message_files(DIRECTORY
                   msg
                   FILES
@@ -41,5 +43,5 @@ target_link_libraries(ros_tools PRIVATE)
 # Build program
 # ##############################################################################
 add_executable(ros_example ros_example.cc)
-target_include_directories(ros_example PRIVATE ${catkin_INCLUDE_DIRS})
-target_link_libraries(ros_example PRIVATE ros_tools app::example common::configs)
+target_include_directories(ros_example PRIVATE ${catkin_INCLUDE_DIRS} ${YAML_CPP_INCLUDE_DIR})
+target_link_libraries(ros_example PRIVATE ros_tools app::example reflcpp::reflcpp ${YAML_CPP_LIBRARIES})
