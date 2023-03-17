@@ -59,7 +59,7 @@ REFLCPP_METAINFO(ProgramConfigs, , (bag_file)(bag_rate))
 REFLCPP_YAML(ProgramConfigs)
 
 void as_absolute_path(std::string &path, const std::string &prefix) {
-  if(fs::path(path).is_relative()) {
+  if(!path.empty() && fs::path(path).is_relative()) {
     path = fs::path(prefix) / path;
   }
 }
