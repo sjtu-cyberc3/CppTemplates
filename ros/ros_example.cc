@@ -9,6 +9,7 @@
 // ros
 #include <dynamic_reconfigure/server.h>
 #include <ros/ros.h>
+#include <ros/callback_queue.h>
 #include <std_msgs/Int32.h>
 #include <std_msgs/String.h>
 // standard c++
@@ -93,7 +94,7 @@ int main(int argc, char* argv[]) {
   /*              main loop               */
   /****************************************/
   ROS_INFO_STREAM("begin loop.");
-  ros::Rate loop_rate(100);
+  auto callbacks = ros::getGlobalCallbackQueue();
   while (ros::ok()) {
     // play rosbag
     if (bag_player.is_open()) {
@@ -102,26 +103,12 @@ int main(int argc, char* argv[]) {
         ros::shutdown();
       bag_player.play_once();
     }
-    // process ros message callback
-    ros::spinOnce();
-    // process user algorithm
-    app->process();
-    // process user result
-    auto result = app->get_rst();
-    if (result.has_value()) {
-      std_msgs::StringPtr rst_msg(new std_msgs::String);
-      rst_msg->data = std::move(result.value());
-      rst_pub.publish(rst_msg);
-
-      cpptemplates::demo rst_msg_stamp;
-      rst_msg_stamp.str          = rst_msg->data;
-      rst_msg_stamp.header.stamp = ros::Time::now();
-      rst_stamp_pub.publish(rst_msg_stamp);
-    }
-    // only sleep without rosbag
-    if (!bag_player.is_open()) {
-      loop_rate.sleep();
-    }
+    // process ros message callback (sleep forever if no callbacks available)
+    if(bag_player.is_open()) {
+      callbacks->callAvailable();
+    } else {
+      callbacks->callAvailable(ros::WallDuration(999));
+    }    
   }
 
   /****************************************/
